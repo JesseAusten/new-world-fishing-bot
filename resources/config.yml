@@ -54,9 +54,9 @@ bait:
       max: 1
 colors:
   green:
-    r: 4
-    g: 227
-    b: 162
+    r: 14
+    g: 181
+    b: 133
   brown:
     r: 230
     g: 110
