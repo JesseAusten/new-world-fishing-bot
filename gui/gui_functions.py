@@ -12,7 +12,7 @@ def popup_rectangle_window(button, x, y, width, height):
     window.attributes('-fullscreen', True)
     window.wm_attributes('-transparentcolor', window['bg'])
     canvas = Canvas(window, width=10000, height=10000)
-    canvas.create_rectangle(x.get(), y.get(), x.get()+width.get(), y.get()+height.get(), outline="green")
+    canvas.create_rectangle(x.get(), y.get(), x.get()+width.get(), y.get()+height.get(), outline="green", width=5)
     canvas.pack()
     button.configure(command = partial(destroy_rectangle_window, window, button, x, y, width, height))
 
@@ -33,6 +33,16 @@ def change_repair_button_state(button):
         button.configure(text="ON ")
         button.configure(bg="green")
         dict['repairing']['enable'] = IntVar(value=1)
+
+def change_bait_button_state(button):
+    if (dict['bait']['enable'].get() == 1):
+        button.configure(text="OFF")
+        button.configure(bg="red")
+        dict['bait']['enable'] = IntVar(value=0)
+    else:
+        button.configure(text="ON ")
+        button.configure(bg="green")
+        dict['bait']['enable'] = IntVar(value=1)
 
 def changeFishingState(button):
     gv.continue_fishing = not gv.continue_fishing

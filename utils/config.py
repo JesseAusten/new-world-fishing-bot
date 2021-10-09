@@ -60,6 +60,29 @@ dict = {
         }
       }
     },
+    'bait':{
+      'bait_x': IntVar(value=config['bait']['bait_x']),
+      'bait_y': IntVar(value=config['bait']['bait_y']),
+      'equip_button_x': IntVar(value=config['bait']['equip_button_x']),
+      'equip_button_y': IntVar(value=config['bait']['equip_button_y']),
+      'length': IntVar(value=config['bait']['length']),
+      'enable': IntVar(value=config['bait']['enable']),
+      'timeouts': {
+        'select': {
+          'min': config['bait']['timeouts']['select']['min'],
+          'max': config['bait']['timeouts']['select']['max']
+        },
+        'confirm': {
+          'min': config['bait']['timeouts']['confirm']['min'],
+          'max': config['bait']['timeouts']['confirm']['max']
+        }
+      }
+    },
+    'colors':{
+      'green': (config['colors']['green']['r'], config['colors']['green']['g'], config['colors']['green']['b']),
+      'brown': (config['colors']['brown']['r'], config['colors']['brown']['g'], config['colors']['brown']['b']),
+      'red': (config['colors']['red']['r'], config['colors']['red']['g'], config['colors']['red']['b'])
+    },
     'resolution':{
       'x': config['resolution']['x'],
       'y': config['resolution']['y']
@@ -122,12 +145,47 @@ def save_data():
         }
       }
     },
+    'bait':{
+      'bait_x': dict['bait']['bait_x'].get(),
+      'bait_y': dict['bait']['bait_y'].get(),
+      'equip_button_x': dict['bait']['equip_button_x'].get(),
+      'equip_button_y': dict['bait']['equip_button_y'].get(),
+      'length': dict['bait']['length'].get(),
+      'enable': dict['bait']['enable'].get(),
+      'timeouts': {
+        'select': {
+          'min': dict['bait']['timeouts']['select']['min'],
+          'max': dict['bait']['timeouts']['select']['max']
+        },
+        'confirm': {
+          'min': dict['bait']['timeouts']['confirm']['min'],
+          'max': dict['bait']['timeouts']['confirm']['max']
+        }
+      }
+    },
+    'colors':{
+      'green': {
+        'r': dict['colors']['green'][0],
+        'g': dict['colors']['green'][1],
+        'b': dict['colors']['green'][2]
+      },
+      'brown': {
+        'r': dict['colors']['brown'][0],
+        'g': dict['colors']['brown'][1],
+        'b': dict['colors']['brown'][2]
+      },
+      'red': {
+        'r': dict['colors']['red'][0],
+        'g': dict['colors']['red'][1],
+        'b': dict['colors']['red'][2]
+      }
+    },
     'resolution':{
       'x': dict['resolution']['x'],
       'y': dict['resolution']['y']
-      },
+    },
     'log_lvl': dict['log_lvl']
-  }
+    }
     with open(CONFIG_PATH, 'w') as yaml_file:
         dump(d, yaml_file, sort_keys=False)
 

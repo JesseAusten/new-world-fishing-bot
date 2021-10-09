@@ -2,6 +2,9 @@
 __pycache__/
 saved_data/screenshots/*
 !saved_data/screenshots/.gitkeep
-/.vs
-/Lib/site-packages
-/Scripts
+Lib/
+Scripts/
+pyvenv.cfg
+bot.spec
+build/
+dist
