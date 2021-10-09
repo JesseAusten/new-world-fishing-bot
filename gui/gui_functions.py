@@ -3,6 +3,7 @@ from functools import partial
 from utils.config import dict, save_data
 from functionality.fishing_loop import fishing_loop
 import utils.global_variables as gv
+from time import sleep
 
 
 def popup_rectangle_window(button, x, y, width, height):
@@ -11,7 +12,7 @@ def popup_rectangle_window(button, x, y, width, height):
     window.attributes('-fullscreen', True)
     window.wm_attributes('-transparentcolor', window['bg'])
     canvas = Canvas(window, width=10000, height=10000)
-    canvas.create_rectangle(x.get(), y.get(), x.get()+width.get(), y.get()+height.get(), fill="green")
+    canvas.create_rectangle(x.get(), y.get(), x.get()+width.get(), y.get()+height.get(), outline="green")
     canvas.pack()
     button.configure(command = partial(destroy_rectangle_window, window, button, x, y, width, height))
 
@@ -43,6 +44,7 @@ def changeFishingState(button):
     button.configure(command = partial(start_fishing, button))
 
 def start_fishing(button):
+    sleep(2)
     changeFishingState(button)
     fishing_loop()
 

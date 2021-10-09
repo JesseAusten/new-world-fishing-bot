@@ -2,8 +2,9 @@ import utils.global_variables as gv
 from functionality.fishing_actions import *
 from functionality.image_recognition import image_recognition_result
 from wrappers.logging_wrapper import info, debug
+from wrappers.win32api_wrapper import *
 from utils.config import dict, random_timeout
-from time import time
+from time import sleep, time
 
 
 def fishing_loop():
@@ -38,14 +39,14 @@ def call_appropriate_fishing_action():
         fish_notice()
         return '1'
     elif result_from_model == '2': #2 - model matched the green icon (reeling a fish in)
-        info("Reeling a fish")
+        info("Green line")
         reel_fish()
         return '2'
     elif result_from_model == '3': #3 - model matched the orange/red icon (wait x sec)
-        info("Pause fishing")
+        info("Red line")
         pause()
         return '3'
     elif result_from_model == '4': #4 - model did not match anything (left click, wait x sec)
-        info("Cast fishing rod")
+        info("Nothing found, case")
         cast()
         return '4'
