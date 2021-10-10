@@ -1,4 +1,4 @@
-import win32api, win32con
+import win32api, win32con, win32gui, win32process
 from time import sleep
 import random
 
@@ -26,3 +26,26 @@ def press_mouse_key():
 
 def release_mouse_key():
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
+
+def make_fg():
+    # Current window
+    hcurr = win32gui.GetForegroundWindow()
+    tcurr, _ = win32process.GetWindowThreadProcessId(hcurr)
+    
+    # New World window
+    hremote = win32gui.FindWindow(None, 'New World')
+    tremote, _ = win32process.GetWindowThreadProcessId(hremote)
+
+    posx, posy = win32gui.GetCursorPos()
+
+    win32process.AttachThreadInput(tcurr, tremote, True)
+    win32gui.SetForegroundWindow(hremote)
+    win32process.AttachThreadInput(tcurr, tremote, False)
+
+    return hcurr, tcurr, tremote, posx, posy
+
+def undo_fg(hprev, tprev, tcurr, posx, posy):
+    win32process.AttachThreadInput(tcurr, tprev, True)
+    win32gui.SetForegroundWindow(hprev)
+    win32process.AttachThreadInput(tcurr, tprev, False)
+    win32api.SetCursorPos((posx, posy))
